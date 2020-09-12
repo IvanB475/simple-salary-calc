@@ -1,0 +1,19 @@
+{
+  "name": "simple-salary-calc",
+  "version": "1.0.0",
+  "description": "Simple salary calculator that calculates Croatian salaries",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanB475/simple-salary-calc.git"
+  },
+  "author": "Ivan Beljan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IvanB475/simple-salary-calc/issues"
+  },
+  "homepage": "https://github.com/IvanB475/simple-salary-calc#readme"
+}
