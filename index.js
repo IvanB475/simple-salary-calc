@@ -69,18 +69,18 @@ const hi = require("./utils/healthInsurance");
         const netto = n.calcNetto(income, base, surtaxPercentage);
 
         const result = {
-            surtaxPercentage: surtaxPercentage,
-            deduction: deduction,
-            supportedMembersDeduction: supportedMembersDeduction,
-            taxRelief: taxRelief,
-            pensionOne: pensionOne,
-            pensionTwo: pensionTwo,
-            totalFee: totalFee,
-            income: income,
-            base: base,
-            healthInsurance: healthInsurance,
-            brutto2: brutto2,
-            netto: netto
+            surtaxPercentage,
+            deduction,
+            supportedMembersDeduction,
+            taxRelief,
+            pensionOne,
+            pensionTwo,
+            totalFee,
+            income,
+            base,
+            healthInsurance,
+            brutto2,
+            netto
         }
         
         return result;
