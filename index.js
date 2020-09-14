@@ -33,7 +33,7 @@ const hi = require("./utils/healthInsurance");
 
         const base = b.calcBase(income, taxRelief);
 
-        const netto = n.calcNetto(income, base, surtaxPercentage);
+        const { netto } = n.calcNetto(income, base, surtaxPercentage);
 
         return netto; 
 
