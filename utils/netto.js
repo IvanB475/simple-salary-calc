@@ -21,5 +21,5 @@ exports.calcNetto = (income, base, surtaxPercentage) => {
     }
     netto = netto.toFixed(2);
 
-    return netto;
+    return { tax, surtax, netto};
 }
