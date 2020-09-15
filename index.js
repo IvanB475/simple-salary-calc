@@ -203,6 +203,56 @@ const hi = require("./utils/healthInsurance");
 
     }
 
+    salary.brutto2ToNettoDetailed = (brutto2, children = 0, supportedMembers = 0, city = "zagreb") => {
+        this.brutto2 = brutto2;
+        this.children = children;
+        this.supportedMembers = supportedMembers;
+        this.city = city.toLowerCase();
+
+        const brutto = salary.brutto2ToBrutto(this.brutto2);
+
+        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+
+        const deduction = c.calcDeduction(this.children);
+
+        const supportedMembersDeduction = sm.calcSmDeduction(this.supportedMembers);
+
+        const taxRelief = deduction + supportedMembersDeduction;
+
+        const { pensionOne, pensionTwo } = p.calcPensions(brutto);
+
+        const totalFee = pensionOne + pensionTwo;
+
+        const income = brutto - totalFee;
+
+        const base = b.calcBase(income, taxRelief);
+
+        const healthInsurance = hi.calcHealthInsurance(brutto);
+
+        const nettoCalculation = n.calcNetto(income, base, surtaxPercentage);
+
+        const { netto, tax, surtax } = nettoCalculation;
+
+        const result = {
+            brutto,
+            surtaxPercentage,
+            deduction,
+            supportedMembersDeduction,
+            taxRelief,
+            pensionOne,
+            pensionTwo,
+            totalFee,
+            income,
+            tax,
+            surtax,
+            base,
+            healthInsurance,
+            brutto2: this.brutto2,
+            netto
+        }
+        
+        return result;
+    }
 
     module.exports = salary;
 
