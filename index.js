@@ -173,6 +173,36 @@ const hi = require("./utils/healthInsurance");
 
     }
 
+    salary.brutto2ToNetto = (brutto2, children, supportedMembers, city) => {
+        this.brutto2 = brutto2;
+        this.children = children;
+        this.supportedMembers = supportedMembers;
+        this.city = city.toLowerCase();
+
+        const brutto = salary.brutto2ToBrutto(this.brutto2);
+
+        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+
+        const deduction = c.calcDeduction(this.children);
+
+        const supportedMembersDeduction = sm.calcSmDeduction(this.supportedMembers);
+
+        const taxRelief = deduction + supportedMembersDeduction;
+
+        const { pensionOne, pensionTwo } = p.calcPensions(brutto);
+
+        const totalFee = pensionOne + pensionTwo;
+
+        const income = brutto - totalFee;
+
+        const base = b.calcBase(income, taxRelief);
+
+        const { netto } = n.calcNetto(income, base, surtaxPercentage);
+
+        return netto; 
+
+    }
+
 
     module.exports = salary;
 
