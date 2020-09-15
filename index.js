@@ -164,6 +164,15 @@ const hi = require("./utils/healthInsurance");
 
     }
 
+    salary.brutto2ToBrutto = (brutto2) => {
+        this.brutto2 = brutto2;
+
+        brutto = this.brutto2 / 1.165; 
+
+        return brutto;
+
+    }
+
 
     module.exports = salary;
 
