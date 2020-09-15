@@ -101,4 +101,8 @@ salaryCalc.netto(15000, 2, 1, "varazdin");
 salaryCalc.nettoDetailed(15000, 2, 1, "varazdin");
 // Parameters( brutto, children, supportedMembers, city, hours, overtime, vacation, sickLeave, holiday, nightShift) 
 salaryCalc.detailedListing(10000, 2, 1, "zagreb", 160, 40, 5, 8, 16, 20);
+// Parameters( brutto2) 
+salaryCalc.brutto2ToBrutto(15000);
+// Parameters( brutto2, children, supportedMembers, city) 
+salaryCalc.brutto2ToNetto(15000, 2, 1, "varazdin");
 ```
