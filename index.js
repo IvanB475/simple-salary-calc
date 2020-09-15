@@ -5,6 +5,8 @@ const p = require("./utils/pensions");
 const b = require("./utils/base");
 const n = require("./utils/netto");
 const hi = require("./utils/healthInsurance");
+const tc = require("./utils/taxCoefficient");
+const cb = require("./utils/calculateBrutto");
 
 (function () {
 
@@ -252,6 +254,28 @@ const hi = require("./utils/healthInsurance");
         }
         
         return result;
+    }
+
+    salary.nettoToBrutto = ( netto, children = 0, supportedMembers = 0, city ="zagreb") => {
+        this.netto = netto;
+        this.children = children;
+        this.supportedMembers = supportedMembers;
+        this.city = city.toLowerCase();
+
+        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+        
+        const deduction = c.calcDeduction(this.children);
+
+        const supportedMembersDeduction = sm.calcSmDeduction(this.supportedMembers);
+
+        const taxRelief = deduction + supportedMembersDeduction;
+
+        const taxCoefficient = tc.getTc(surtaxPercentage);
+
+        const brutto = cb.calcBrutto(netto, taxRelief, taxCoefficient);
+
+        return brutto;
+
     }
 
     module.exports = salary;
