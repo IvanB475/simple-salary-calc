@@ -9,7 +9,7 @@ It's installable via npm using ``` npm i simple-salary-calc ```.
 Calculator provides several methods: 
 
 **1. netto**  
-- Simplest method that takes 4 parameters: brutto, children, supportedMembers and city and it returns single value, netto.
+- Simplest method that takes 4 parameters: brutto, children, supportedMembers, city and it returns single value, netto.
 - children and supportedMembers default to 0 if you don't pass any value, city default to "zagreb".
 ```
 netto = (brutto, children = 0, supportedMembers = 0, city = 'zagreb') => { ... }
@@ -84,11 +84,77 @@ brutto2ToBrutto = (brutto2) => { ... }
 ```
 
 **5. brutto2ToNetto**
-- Method that takes 4 arguments: brutto2, children, supportedMembers and city and it returns single value, netto. 
+- Method that takes 4 arguments: brutto2, children, supportedMembers, city, and returns a single value, netto. 
 - children and supportedMembers default to 0, city defaults to "zagreb".
 
 ```
 brutto2ToNetto = (brutto2, children = 0, supportedMembers = 0, city = 'zagreb') => { ... }
+```
+
+**6. brutto2ToNettoDetailed**
+- Method that takes 4 arguments: brutto2, children, supportedMembers, city, and it returns an object.
+- Key/value pairs returned:
+```
+{
+            brutto,
+            surtaxPercentage,
+            deduction,
+            supportedMembersDeduction,
+            taxRelief,
+            pensionOne,
+            pensionTwo,
+            totalFee,
+            income,
+            tax,
+            surtax,
+            base,
+            healthInsurance,
+            brutto2,
+            netto
+}
+```
+- children and supportedMembers default to 0, city defaults to "zagreb".
+
+```
+brutto2ToNettoDetailed = (brutto2, children = 0, supportedMembers = 0, city = 'zagreb') => { ... }
+```
+
+**7. NettoToBrutto**
+- Method that takes 4 arguments: netto, children, supportedMembers, city and returns a  single value, brutto.
+- children and supportedMembers default to 0, city defaults to "zagreb".
+
+```
+nettoToBrutto = ( netto, children = 0, supportedMembers = 0, city = "zagreb") => { ... }
+```
+
+
+**8. NettoToBruttoDetailed**
+- Method that takes 4 arguments: netto, children, supportedMembers, city and returns an object.
+- Key/value pairs returned:
+
+```
+{
+            netto, 
+            deduction,
+            supportedMembersDeduction,
+            taxRelief,
+            pensionOne,
+            pensionTwo,
+            totalFee,
+            income,
+            base,
+            tax,
+            surtax,
+            healthInsurance,
+            brutto2,
+            brutto
+}
+```
+- children and supportedMembers default to 0, city defaults to "zagreb".
+
+
+```
+nettoToBruttoDetailed = ( netto, children = 0, supportedMembers = 0, city = "zagreb") => { ... }
 ```
 
 ## Basic usage example: 
@@ -105,4 +171,11 @@ salaryCalc.detailedListing(10000, 2, 1, "zagreb", 160, 40, 5, 8, 16, 20);
 salaryCalc.brutto2ToBrutto(15000);
 // Parameters( brutto2, children, supportedMembers, city) 
 salaryCalc.brutto2ToNetto(15000, 2, 1, "varazdin");
+// Parameters( brutto2, children, supportedMembers, city) 
+salaryCalc.brutto2ToNettoDetailed(15000, 2, 1, "varazdin");
+// Parameters( netto, children, supportedMembers, city) 
+salaryCalc.nettoToBrutto(15000, 2, 1, "varazdin");
+// Parameters( netto, children, supportedMembers, city) 
+salaryCalc.nettoToBruttoDetailed(15000, 2, 1, "varazdin");
+
 ```
