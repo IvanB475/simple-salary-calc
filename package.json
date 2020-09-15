@@ -1,6 +1,6 @@
 {
   "name": "simple-salary-calc",
-  "version": "1.0.23",
+  "version": "1.1.0",
   "description": "Simple salary calculator that calculates Croatian salaries",
   "main": "index.js",
   "scripts": {
