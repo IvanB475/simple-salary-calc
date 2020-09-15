@@ -83,7 +83,7 @@ detailedListing = (brutto, children = 0, supportedMembers = 0, city = 'zagreb', 
 brutto2ToBrutto = (brutto2) => { ... }
 ```
 
-**4. brutto2ToNetto**
+**5. brutto2ToNetto**
 - Method that takes 4 arguments: brutto2, children, supportedMembers and city and it returns single value, netto. 
 - children and supportedMembers default to 0, city defaults to "zagreb".
 
