@@ -173,7 +173,7 @@ const hi = require("./utils/healthInsurance");
 
     }
 
-    salary.brutto2ToNetto = (brutto2, children, supportedMembers, city) => {
+    salary.brutto2ToNetto = (brutto2, children = 0, supportedMembers = 0, city = "zagreb") => {
         this.brutto2 = brutto2;
         this.children = children;
         this.supportedMembers = supportedMembers;

@@ -9,7 +9,7 @@ It's installable via npm using ``` npm i simple-salary-calc ```.
 Calculator provides several methods: 
 
 **1. netto**  
-- Simplest method that takes 4 parameters: brutto, children, supportedMembers and city and it returns single value, netto salary.
+- Simplest method that takes 4 parameters: brutto, children, supportedMembers and city and it returns single value, netto.
 - children and supportedMembers default to 0 if you don't pass any value, city default to "zagreb".
 ```
 netto = (brutto, children = 0, supportedMembers = 0, city = 'zagreb') => { ... }
@@ -76,7 +76,20 @@ nettoDetailed = (brutto, children = 0, supportedMembers = 0, city = 'zagreb') =>
 detailedListing = (brutto, children = 0, supportedMembers = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, holiday = 0, nightShift = 0) => { ... }
 ```
 
+**4. brutto2ToBrutto**
+- Method that takes single parameter, brutto2 and returns single value, brutto.
 
+```
+brutto2ToBrutto = (brutto2) => { ... }
+```
+
+**4. brutto2ToNetto**
+- Method that takes 4 arguments: brutto2, children, supportedMembers and city and it returns single value, netto. 
+- children and supportedMembers default to 0, city defaults to "zagreb".
+
+```
+brutto2ToNetto = (brutto2, children = 0, supportedMembers = 0, city = 'zagreb') => { ... }
+```
 
 ## Basic usage example: 
 
