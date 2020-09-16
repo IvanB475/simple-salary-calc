@@ -7,6 +7,7 @@ const n = require("./utils/netto");
 const hi = require("./utils/healthInsurance");
 const tc = require("./utils/taxCoefficient");
 const cb = require("./utils/calculateBrutto");
+const tc36 = require("./utils/taxCoefficient36");
 
 (function () {
 
@@ -293,6 +294,8 @@ const cb = require("./utils/calculateBrutto");
         const taxRelief = deduction + supportedMembersDeduction;
 
         const taxCoefficient = tc.getTc(surtaxPercentage);
+
+        const taxCoefficient36 = tc36.getTc36(surtaxPercentage);
 
         const brutto = cb.calcBrutto(netto, taxRelief, taxCoefficient);
 
