@@ -297,7 +297,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
         const taxCoefficient36 = tc36.getTc36(surtaxPercentage);
 
-        const brutto = cb.calcBrutto(netto, taxRelief, taxCoefficient);
+        const brutto = cb.calcBrutto(this.netto, taxRelief, taxCoefficient, taxCoefficient36);
 
         const { pensionOne, pensionTwo } = p.calcPensions(brutto);
 
