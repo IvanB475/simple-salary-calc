@@ -93,10 +93,11 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, holiday = 0, nightShift = 0) => {
+    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, holiday = 0, nightShift = 0) => {
         this.brutto = brutto;
         this.children = children;
         this.supportedMembers = supportedMembers;
+        this.surtaxPercentageDec = surtaxPercentageDec;
         this.city = city;
         this.hours = hours;
         this.overtime = overtime;
@@ -114,7 +115,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
         this.brutto = this.brutto + overtimeTotal + vacationTotal + sickLeaveTotal + holidayTotal + nightShiftTotal;
 
-        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+        const surtaxPercentage = this.surtaxPercentageDec || sp.calcSurtaxPercentage(this.city);
 
         const deduction = c.calcDeduction(this.children);
 
@@ -141,12 +142,12 @@ const tc36 = require("./utils/taxCoefficient36");
         const result = {
             brutto: this.brutto,
             hourly,
+            surtaxPercentage,
             overtimeTotal,
             vacationTotal,
             sickLeaveTotal,
             holidayTotal,
             nightShiftTotal,
-            surtaxPercentage,
             deduction,
             supportedMembersDeduction,
             taxRelief,
