@@ -23,8 +23,9 @@ exports.calcNetto = (income, base, surtaxPercentage) => {
 
     totalTax = tax + tax36;
     surtax = totalTax * this.surtaxPercentage;
-    netto = this.income - ( totalTax + surtax );
+    totalTaxSurtax = totalTax + surtax;
+    netto = this.income - totalTaxSurtax;
     netto = netto.toFixed(2);
 
-    return { tax, tax36, totalTax, surtax, netto};
+    return { tax, tax36, totalTax, surtax, totalTaxSurtax, netto};
 }
