@@ -42,14 +42,15 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.nettoDetailed = (brutto, children = 0, supportedMembers = 0, city = 'zagreb') => {
+    salary.nettoDetailed = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec =0, city = 'zagreb') => {
         this.brutto = brutto;
         this.children = children;
+        this.surtaxPercentageDec = surtaxPercentageDec;
         this.supportedMembers = supportedMembers;
         this.city = city.toLowerCase();
         
 
-        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+        const surtaxPercentage = this.surtaxPercentageDec || sp.calcSurtaxPercentage(this.city);
 
         const deduction = c.calcDeduction(this.children);
 

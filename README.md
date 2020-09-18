@@ -63,17 +63,19 @@ nettoDetailed = (brutto, children = 0, supportedMembers = 0, city = 'zagreb') =>
             totalFee,
             income,
             tax,
+            totalTax,
             surtax,
+            totalTaxSurtax,
             base,
             healthInsurance,
             brutto2,
             netto
 }
 ```
-- children, supportedMembers, overtime, vacation, sickLeave, holiday, nightShift default to 0, hours default to 160, city defaults to "zagreb".
+- children, supportedMembers, surtaxPercentageDec, overtime, vacation, sickLeave, holiday, nightShift default to 0, hours default to 160, city defaults to "zagreb".
 
 ```
-detailedListing = (brutto, children = 0, supportedMembers = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, holiday = 0, nightShift = 0) => { ... }
+detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, holiday = 0, nightShift = 0) => { ... }
 ```
 
 **4. brutto2ToBrutto**
