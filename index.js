@@ -72,7 +72,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
         const nettoCalculation = n.calcNetto(income, base, surtaxPercentage);
 
-        const { netto, tax, surtax } = nettoCalculation;
+        const { netto, tax, tax36, totalTax, surtax, totalTaxSurtax } = nettoCalculation;
 
         const result = {
             surtaxPercentage,
@@ -85,7 +85,10 @@ const tc36 = require("./utils/taxCoefficient36");
             income,
             base,
             tax,
+            tax36,
+            totalTax,
             surtax,
+            totalTaxSurtax,
             healthInsurance,
             brutto2,
             netto
