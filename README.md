@@ -43,7 +43,7 @@ nettoDetailed = (brutto, children = 0, supportedMembers = 0, city = 'zagreb') =>
 ```
 
 **3. detailedListing**
-- Method that takes 10 parameters: brutto, children, supportedMembers, city, hours, overtime, vacation, sickLeave, holiday, nightShift and returns object.
+- Method that takes 11 parameters: brutto, children, supportedMembers, surtaxPercentageDec, city, hours, overtime, vacation, sickLeave, holiday, nightShift and returns object.
 - Key/value pairs returned: 
 ```
 {
