@@ -266,13 +266,14 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.nettoToBrutto = ( netto, children = 0, supportedMembers = 0, city = "zagreb") => {
+    salary.nettoToBrutto = ( netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => {
         this.netto = netto;
         this.children = children;
         this.supportedMembers = supportedMembers;
+        this.surtaxPercentageDec = surtaxPercentageDec;
         this.city = city.toLowerCase();
 
-        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+        const surtaxPercentage = this.surtaxPercentageDec || sp.calcSurtaxPercentage(this.city);
         
         const deduction = c.calcDeduction(this.children);
 
@@ -288,13 +289,14 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.nettoToBruttoDetailed = (netto, children = 0, supportedMembers = 0, city = "zagreb") => {
+    salary.nettoToBruttoDetailed = (netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => {
         this.netto = netto;
         this.children = children;
         this.supportedMembers = supportedMembers;
+        this.surtaxPercentageDec = surtaxPercentageDec;
         this.city = city.toLowerCase();
 
-        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+        const surtaxPercentage = this.surtaxPercentageDec || sp.calcSurtaxPercentage(this.city);
         
         const deduction = c.calcDeduction(this.children);
 
@@ -322,7 +324,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
         const nettoCalculation = n.calcNetto(income, base, surtaxPercentage);
 
-        const { tax, tax36, totalTax, surtax } = nettoCalculation;
+        const { tax, tax36, totalTax, surtax, totalTaxSurtax } = nettoCalculation;
 
         return {
             netto, 
@@ -338,6 +340,7 @@ const tc36 = require("./utils/taxCoefficient36");
             tax36,
             totalTax,
             surtax,
+            totalTaxSurtax,
             healthInsurance,
             brutto2,
             brutto
