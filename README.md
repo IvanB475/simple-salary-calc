@@ -30,7 +30,10 @@ netto = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, ci
             income,
             base,
             tax,
+            tax36,
+            totalTax,
             surtax,
+            totalTaxSurtax,
             healthInsurance,
             brutto2,
             netto
@@ -86,15 +89,15 @@ brutto2ToBrutto = (brutto2) => { ... }
 ```
 
 **5. brutto2ToNetto**
-- Method that takes 4 arguments: brutto2, children, supportedMembers, city, and returns a single value, netto. 
-- children and supportedMembers default to 0, city defaults to "zagreb".
+- Method that takes 5 arguments: brutto2, children, supportedMembers, surtaxPercentageDec, city, and returns a single value, netto. 
+- children, supportedMembers and surtaxPercentageDec default to 0, city defaults to "zagreb".
 
 ```
-brutto2ToNetto = (brutto2, children = 0, supportedMembers = 0, city = 'zagreb') => { ... }
+brutto2ToNetto = (brutto2, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb') => { ... }
 ```
 
 **6. brutto2ToNettoDetailed**
-- Method that takes 4 arguments: brutto2, children, supportedMembers, city, and it returns an object.
+- Method that takes 5 arguments: brutto2, children, supportedMembers, surtaxPercentageDec, city, and it returns an object.
 - Key/value pairs returned:
 ```
 {
@@ -108,30 +111,33 @@ brutto2ToNetto = (brutto2, children = 0, supportedMembers = 0, city = 'zagreb') 
             totalFee,
             income,
             tax,
+            tax36,
+            totalTax,
             surtax,
+            totalTaxSurtax,
             base,
             healthInsurance,
             brutto2,
             netto
 }
 ```
-- children and supportedMembers default to 0, city defaults to "zagreb".
+- children, supportedMembers and surtaxPercentageDec default to 0, city defaults to "zagreb".
 
 ```
 brutto2ToNettoDetailed = (brutto2, children = 0, supportedMembers = 0, city = 'zagreb') => { ... }
 ```
 
 **7. NettoToBrutto**
-- Method that takes 4 arguments: netto, children, supportedMembers, city and returns a  single value, brutto.
-- children and supportedMembers default to 0, city defaults to "zagreb".
+- Method that takes 5 arguments: netto, children, supportedMembers, surtaxPercentageDec, city and returns a  single value, brutto.
+- children, supportedMembers and surtaxPercentageDec default to 0, city defaults to "zagreb".
 
 ```
-nettoToBrutto = ( netto, children = 0, supportedMembers = 0, city = "zagreb") => { ... }
+nettoToBrutto = ( netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => { ... }
 ```
 
 
 **8. NettoToBruttoDetailed**
-- Method that takes 4 arguments: netto, children, supportedMembers, city and returns an object.
+- Method that takes 5 arguments: netto, children, supportedMembers, surtaxPercentageDec, city and returns an object.
 - Key/value pairs returned:
 
 ```
@@ -146,38 +152,41 @@ nettoToBrutto = ( netto, children = 0, supportedMembers = 0, city = "zagreb") =>
             income,
             base,
             tax,
+            tax36,
+            totalTax,
             surtax,
+            totalTaxSurtax,
             healthInsurance,
             brutto2,
             brutto
 }
 ```
-- children and supportedMembers default to 0, city defaults to "zagreb".
+- children, supportedMembers and surtaxPercentageDec default to 0, city defaults to "zagreb".
 
 
 ```
-nettoToBruttoDetailed = ( netto, children = 0, supportedMembers = 0, city = "zagreb") => { ... }
+nettoToBruttoDetailed = ( netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => { ... }
 ```
 
 ## Basic usage example: 
 
 ```
 const salaryCalc = require('simple-salary-calc');
-// Parameters( brutto, children, supportedMembers, city) 
-salaryCalc.netto(15000, 2, 1, "varazdin");
-// Parameters( brutto, children, supportedMembers, city) 
-salaryCalc.nettoDetailed(15000, 2, 1, "varazdin");
-// Parameters( brutto, children, supportedMembers, city, hours, overtime, vacation, sickLeave, holiday, nightShift) 
-salaryCalc.detailedListing(10000, 2, 1, "zagreb", 160, 40, 5, 8, 16, 20);
+// Parameters( brutto, children, supportedMembers, surtaxPercentageDec, city) 
+salaryCalc.netto(15000, 2, 1, 0.10, "varazdin");
+// Parameters( brutto, children, supportedMembers, surtaxPercentageDec, city) 
+salaryCalc.nettoDetailed(15000, 2, 1, 0.10, "varazdin");
+// Parameters( brutto, children, supportedMembers, surtaxPercentageDec, city, hours, overtime, vacation, sickLeave, holiday, nightShift) 
+salaryCalc.detailedListing(10000, 2, 1, 0.18, "zagreb", 160, 40, 5, 8, 16, 20);
 // Parameters( brutto2) 
 salaryCalc.brutto2ToBrutto(15000);
-// Parameters( brutto2, children, supportedMembers, city) 
-salaryCalc.brutto2ToNetto(15000, 2, 1, "varazdin");
-// Parameters( brutto2, children, supportedMembers, city) 
-salaryCalc.brutto2ToNettoDetailed(15000, 2, 1, "varazdin");
-// Parameters( netto, children, supportedMembers, city) 
-salaryCalc.nettoToBrutto(15000, 2, 1, "varazdin");
-// Parameters( netto, children, supportedMembers, city) 
-salaryCalc.nettoToBruttoDetailed(15000, 2, 1, "varazdin");
+// Parameters( brutto2, children, supportedMembers, surtaxPercentageDec, city) 
+salaryCalc.brutto2ToNetto(15000, 2, 1, 0.10, "varazdin");
+// Parameters( brutto2, children, supportedMembers, surtaxPercentageDec, city) 
+salaryCalc.brutto2ToNettoDetailed(15000, 2, 1, 0.10, "varazdin");
+// Parameters( netto, children, supportedMembers, surtaxPercentageDec, city) 
+salaryCalc.nettoToBrutto(15000, 2, 1, 0.10, "varazdin");
+// Parameters( netto, children, supportedMembers, surtaxPercentageDec, city) 
+salaryCalc.nettoToBruttoDetailed(15000, 2, 1, 0.10, "varazdin");
 
 ```
