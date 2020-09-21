@@ -215,15 +215,16 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.brutto2ToNettoDetailed = (brutto2, children = 0, supportedMembers = 0, city = "zagreb") => {
+    salary.brutto2ToNettoDetailed = (brutto2, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => {
         this.brutto2 = brutto2;
         this.children = children;
         this.supportedMembers = supportedMembers;
+        this.surtaxPercentageDec = surtaxPercentageDec;
         this.city = city.toLowerCase();
 
         const brutto = salary.brutto2ToBrutto(this.brutto2);
 
-        const surtaxPercentage = sp.calcSurtaxPercentage(this.city);
+        const surtaxPercentage = this.surtaxPercentageDec || sp.calcSurtaxPercentage(this.city);
 
         const deduction = c.calcDeduction(this.children);
 
@@ -243,7 +244,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
         const nettoCalculation = n.calcNetto(income, base, surtaxPercentage);
 
-        const { netto, tax, surtax } = nettoCalculation;
+        const { netto, tax, tax36, totalTax, surtax, totalTaxSurtax } = nettoCalculation;
 
         const result = {
             brutto,
@@ -256,7 +257,10 @@ const tc36 = require("./utils/taxCoefficient36");
             totalFee,
             income,
             tax,
+            tax36,
+            totalTax,
             surtax,
+            totalTaxSurtax,
             base,
             healthInsurance,
             brutto2: this.brutto2,
