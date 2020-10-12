@@ -1,8 +1,8 @@
 # simple-salary-calc
 
-Simple-salary-calc is a simple module which enables easier calculation of salaries in Croatia. 
+Simple-salary-calc is a simple library which enables easier calculation of salaries in Croatia. 
 
-It's installable via npm using ``` npm i simple-salary-calc ```.
+Installable via npm using ``` npm i simple-salary-calc ```.
 
 
 
