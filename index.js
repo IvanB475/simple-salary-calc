@@ -118,9 +118,9 @@ const tc36 = require("./utils/taxCoefficient36");
 
         const hourly = this.brutto / this.hours; 
         const overtimeTotal = this.overtime * ( hourly * co);
-        const vacationTotal = this.vacation * cv;
+        const vacationTotal = this.vacation * (hourly * cv);
         const sickLeaveTotal = this.sickLeave * ( hourly * csl);
-        const holidayTotal = this.holiday * ch;
+        const holidayTotal = this.holiday * (hourly * ch);
         const nightShiftTotal = this.nightShift * (hourly * cn);
 
         this.brutto = this.brutto + overtimeTotal + vacationTotal + sickLeaveTotal + holidayTotal + nightShiftTotal;
