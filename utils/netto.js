@@ -11,16 +11,12 @@ exports.calcNetto = (income, base, surtaxPercentage) => {
 
     if(this.base > 30000) {
         tax36 = (this.base - 30000) * 0.36;
-    }
-
-    if (this.base < 30000) {
-        tax = this.base * 0.24;
-    } else {
         tax = 30000 * 0.24;
-
-        netto = this.income - ( tax + surtax );
+    } else {
+        tax = this.base * 0.24;
     }
 
+    netto = this.income - ( tax + surtax );
     totalTax = tax + tax36;
     surtax = totalTax * this.surtaxPercentage;
     totalTaxSurtax = totalTax + surtax;
