@@ -98,13 +98,14 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5) => {
+    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5) => {
         this.brutto = brutto;
         this.children = children;
         this.supportedMembers = supportedMembers;
         this.surtaxPercentageDec = surtaxPercentageDec;
         this.city = city;
         this.hours = hours;
+        this.regularHours = regularHours;
         this.overtime = overtime;
         this.vacation = vacation;
         this.sickLeave = sickLeave;
@@ -120,6 +121,7 @@ const tc36 = require("./utils/taxCoefficient36");
         this.cn = cn;
 
         const hourly = this.brutto / this.hours; 
+        const regularHoursTotal = this.regularHours * hourly;
         const overtimeTotal = this.overtime * ( hourly * co);
         const vacationTotal = this.vacation * (hourly * cv);
         const sickLeaveTotal = this.sickLeave * ( hourly * csl);
@@ -130,7 +132,7 @@ const tc36 = require("./utils/taxCoefficient36");
         const holidayTotal = this.holiday * (hourly * ch);
         const nightShiftTotal = this.nightShift * (hourly * cn);
 
-        this.brutto = this.brutto + overtimeTotal + vacationTotal + sickLeaveTotal + sickLeave42Total + sickLeave80Total + sickLeave100Total + holidayTotal + nightShiftTotal;
+        this.brutto = this.brutto + regularHoursTotal + overtimeTotal + vacationTotal + sickLeaveTotal + sickLeave42Total + sickLeave80Total + sickLeave100Total + holidayTotal + nightShiftTotal;
 
         const surtaxPercentage = this.surtaxPercentageDec || sp.calcSurtaxPercentage(this.city);
 
@@ -159,6 +161,7 @@ const tc36 = require("./utils/taxCoefficient36");
         const result = {
             brutto: this.brutto,
             hourly,
+            regularHoursTotal,
             surtaxPercentage,
             overtimeTotal,
             vacationTotal,
