@@ -98,7 +98,7 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, holiday = 0, nightShift = 0, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5) => {
+    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5) => {
         this.brutto = brutto;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -108,6 +108,8 @@ const tc36 = require("./utils/taxCoefficient36");
         this.overtime = overtime;
         this.vacation = vacation;
         this.sickLeave = sickLeave;
+        this.sickLeave80 = sickLeave80;
+        this.sickLeave100 = sickLeave100;
         this.holiday = holiday;
         this.nightShift = nightShift;
         this.co = co;
@@ -120,10 +122,12 @@ const tc36 = require("./utils/taxCoefficient36");
         const overtimeTotal = this.overtime * ( hourly * co);
         const vacationTotal = this.vacation * (hourly * cv);
         const sickLeaveTotal = this.sickLeave * ( hourly * csl);
+        const sickLeave80Total = this.sickLeave80 * ( hourly * 0.80);
+        const sickLeave100Total = this.sickLeave100 * hourly;
         const holidayTotal = this.holiday * (hourly * ch);
         const nightShiftTotal = this.nightShift * (hourly * cn);
 
-        this.brutto = this.brutto + overtimeTotal + vacationTotal + sickLeaveTotal + holidayTotal + nightShiftTotal;
+        this.brutto = this.brutto + overtimeTotal + vacationTotal + sickLeaveTotal + sickLeave80Total + sickLeave100Total + holidayTotal + nightShiftTotal;
 
         const surtaxPercentage = this.surtaxPercentageDec || sp.calcSurtaxPercentage(this.city);
 
@@ -156,6 +160,8 @@ const tc36 = require("./utils/taxCoefficient36");
             overtimeTotal,
             vacationTotal,
             sickLeaveTotal,
+            sickLeave80Total,
+            sickLeave100Total,
             holidayTotal,
             nightShiftTotal,
             deduction,
