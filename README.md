@@ -46,18 +46,22 @@ nettoDetailed = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec
 ```
 
 **3. detailedListing**
-- Method that takes 11 parameters: brutto, children, supportedMembers, surtaxPercentageDec, city, hours, overtime, vacation, sickLeave, holiday, nightShift and returns object.
+- Method that takes 20 parameters: brutto, children, supportedMembers, surtaxPercentageDec, city, hours, regularHours,  overtime, vacation, sickLeave, sickLeave42, sickLeave80, sickLeave100, holiday, nightShift, co, cv, csl, ch, cn and returns object.
 - Key/value pairs returned: 
 ```
 {
             brutto,
             hourly,
+            regularHoursTotal,
+            surtaxPercentage,
             overtimeTotal,
             vacationTotal,
             sickLeaveTotal,
+            sickLeave42Total,
+            sickLeave80Total,
+            sickLeave100Total,
             holidayTotal,
             nightShiftTotal,
-            surtaxPercentage,
             deduction,
             supportedMembersDeduction,
             taxRelief,
@@ -66,8 +70,9 @@ nettoDetailed = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec
             totalFee,
             income,
             tax,
-            totalTax,
+            tax36,
             surtax,
+            totalTax,
             totalTaxSurtax,
             base,
             healthInsurance,
@@ -75,10 +80,10 @@ nettoDetailed = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec
             netto
 }
 ```
-- children, supportedMembers, surtaxPercentageDec, overtime, vacation, sickLeave, holiday, nightShift default to 0, hours default to 160, city defaults to "zagreb".
+- children, supportedMembers, surtaxPercentageDec, regularHours, overtime, vacation, sickLeave, sickLeave42, sickLeave80, sickLeave100, holiday, nightShift default to 0, hours default to 160, city defaults to "zagreb", co default to 1.3, cv to 1, csl to 0.70, ch to 1, cn to 1.5.
 
 ```
-detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, overtime = 0, vacation = 0, sickLeave = 0, holiday = 0, nightShift = 0) => { ... }
+detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5) => { ... }
 ```
 
 **4. brutto2ToBrutto**
@@ -176,8 +181,8 @@ const salaryCalc = require('simple-salary-calc');
 salaryCalc.netto(15000, 2, 1, 0.10, "varazdin");
 // Parameters( brutto, children, supportedMembers, surtaxPercentageDec, city) 
 salaryCalc.nettoDetailed(15000, 2, 1, 0.10, "varazdin");
-// Parameters( brutto, children, supportedMembers, surtaxPercentageDec, city, hours, overtime, vacation, sickLeave, holiday, nightShift) 
-salaryCalc.detailedListing(10000, 2, 1, 0.18, "zagreb", 160, 40, 5, 8, 16, 20);
+// Parameters( brutto, children, supportedMembers, surtaxPercentageDec, city, hours, regularHours, overtime, vacation, sickLeave, sickLeave42, sickLeave80, sickLeave100, holiday, nightShift) 
+salaryCalc.detailedListing(10000, 2, 1, 0.18, "zagreb", 160, 120, 40, 5, 8, 0, 0, 0, 16, 20);
 // Parameters( brutto2) 
 salaryCalc.brutto2ToBrutto(15000);
 // Parameters( brutto2, children, supportedMembers, surtaxPercentageDec, city) 
