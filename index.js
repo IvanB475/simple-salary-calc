@@ -98,7 +98,7 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5) => {
+    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, chr = 1, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5) => {
         this.brutto = brutto;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -114,23 +114,24 @@ const tc36 = require("./utils/taxCoefficient36");
         this.sickLeave100 = sickLeave100;
         this.holiday = holiday;
         this.nightShift = nightShift;
+        this.chr = chr;
         this.co = co;
         this.cv = cv;
         this.csl = csl;
         this.ch = ch;
         this.cn = cn;
 
-        const hourly = this.brutto / this.hours; 
-        const regularHoursTotal = this.regularHours * hourly;
-        const overtimeTotal = this.overtime * ( hourly * co);
-        const vacationTotal = this.vacation * (hourly * cv);
-        const sickLeaveTotal = this.sickLeave * ( hourly * csl);
+        const hourly = this.brutto / this.hours ; 
+        const regularHoursTotal = this.regularHours * (hourly * this.chr);
+        const overtimeTotal = this.overtime * ( hourly * this.co);
+        const vacationTotal = this.vacation * (hourly * this.cv);
+        const sickLeaveTotal = this.sickLeave * ( hourly * this.csl);
         const sl42t = this.sickLeave42 * ( hourly * 0.70);
         const sickLeave42Total = sl42t > 4257.28 ? 4257.28 : sl42t;
         const sickLeave80Total = this.sickLeave80 * ( hourly * 0.80);
         const sickLeave100Total = this.sickLeave100 * hourly;
-        const holidayTotal = this.holiday * (hourly * ch);
-        const nightShiftTotal = this.nightShift * (hourly * cn);
+        const holidayTotal = this.holiday * (hourly * this.ch);
+        const nightShiftTotal = this.nightShift * (hourly * this.cn);
 
         this.brutto = this.brutto + regularHoursTotal + overtimeTotal + vacationTotal + sickLeaveTotal + sickLeave42Total + sickLeave80Total + sickLeave100Total + holidayTotal + nightShiftTotal;
 
