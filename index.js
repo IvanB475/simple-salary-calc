@@ -98,7 +98,7 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, standby = 0, chr = 1, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5, csb = 1.0) => {
+    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, standby = 0, stoppage = 0, chr = 1, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5, csb = 1.0) => {
         this.brutto = brutto;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -115,6 +115,7 @@ const tc36 = require("./utils/taxCoefficient36");
         this.holiday = holiday;
         this.nightShift = nightShift;
         this.standby = standby;
+        this.stoppage = stoppage;
         this.chr = chr;
         this.co = co;
         this.cv = cv;
@@ -122,6 +123,7 @@ const tc36 = require("./utils/taxCoefficient36");
         this.ch = ch;
         this.cn = cn;
         this.csb = csb;
+
 
         const hourly = this.brutto / this.hours ; 
         const regularHoursTotal = this.regularHours * (hourly * this.chr);
@@ -162,6 +164,8 @@ const tc36 = require("./utils/taxCoefficient36");
 
         const { netto, tax, tax36, surtax, totalTax } = nettoCalculation;
 
+        const payout = netto - stoppage;
+
         const result = {
             brutto: this.brutto,
             hourly,
@@ -191,7 +195,8 @@ const tc36 = require("./utils/taxCoefficient36");
             base,
             healthInsurance,
             brutto2,
-            netto
+            netto,
+            payout
         }
         
         return result;
