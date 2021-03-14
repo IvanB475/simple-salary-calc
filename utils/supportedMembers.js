@@ -1,4 +1,4 @@
-exports.calcSmDeduction = (supportedMembers) => {
+exports.calcSmDeduction = function (supportedMembers) {
     this.supportedMembers = supportedMembers;
     let supportedMembersDeduction;
     switch(this.supportedMembers) {

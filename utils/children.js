@@ -1,4 +1,4 @@
-exports.calcDeduction = (children) => {
+exports.calcDeduction = function (children) {
     this.children = children;
     let deduction = 0;
     switch(this.children) {

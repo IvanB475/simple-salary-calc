@@ -13,7 +13,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
     let salary = {};
 
-    salary.netto = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb') => {
+    salary.netto = function (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb') {
         this.brutto = brutto;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -43,7 +43,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.nettoDetailed = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb') => {
+    salary.nettoDetailed = function (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb') {
         this.brutto = brutto;
         this.children = children;
         this.surtaxPercentageDec = surtaxPercentageDec;
@@ -98,7 +98,7 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.detailedListing = (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, standby = 0, reimbursement = 0, stoppage = 0, chr = 1, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5, csb = 1.0) => {
+    salary.detailedListing = function (brutto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = 'zagreb', hours = 160, regularHours = 0, overtime = 0, vacation = 0, sickLeave = 0, sickLeave42 = 0, sickLeave80 = 0, sickLeave100 = 0, holiday = 0, nightShift = 0, standby = 0, reimbursement = 0, stoppage = 0, chr = 1, co = 1.3, cv = 1, csl = 0.70, ch = 1, cn = 1.5, csb = 1.0) {
         this.brutto = brutto;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -124,6 +124,8 @@ const tc36 = require("./utils/taxCoefficient36");
         this.ch = ch;
         this.cn = cn;
         this.csb = csb;
+
+        console.log(this);
 
         const hourly = this.brutto / this.hours ; 
         const regularHoursTotal = this.regularHours * (hourly * this.chr);
@@ -204,7 +206,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.brutto2ToBrutto = (brutto2) => {
+    salary.brutto2ToBrutto = function (brutto2) {
         this.brutto2 = brutto2;
 
         brutto = this.brutto2 / 1.165; 
@@ -213,7 +215,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.brutto2ToNetto = (brutto2, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => {
+    salary.brutto2ToNetto = function (brutto2, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") {
         this.brutto2 = brutto2;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -244,7 +246,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.brutto2ToNettoDetailed = (brutto2, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => {
+    salary.brutto2ToNettoDetailed = function (brutto2, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") {
         this.brutto2 = brutto2;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -299,7 +301,7 @@ const tc36 = require("./utils/taxCoefficient36");
         return result;
     }
 
-    salary.nettoToBrutto = ( netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => {
+    salary.nettoToBrutto = function ( netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") {
         this.netto = netto;
         this.children = children;
         this.supportedMembers = supportedMembers;
@@ -322,7 +324,7 @@ const tc36 = require("./utils/taxCoefficient36");
 
     }
 
-    salary.nettoToBruttoDetailed = (netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") => {
+    salary.nettoToBruttoDetailed = function (netto, children = 0, supportedMembers = 0, surtaxPercentageDec = 0, city = "zagreb") {
         this.netto = netto;
         this.children = children;
         this.supportedMembers = supportedMembers;

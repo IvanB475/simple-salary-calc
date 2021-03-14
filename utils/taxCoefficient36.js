@@ -1,6 +1,6 @@
 const { surtaxPercentage } = require("./netto");
 
-exports.getTc36 = (surtaxPercentage) => {
+exports.getTc36 = function (surtaxPercentage) {
     this.surtaxPercentage = surtaxPercentage;
 
     const sc = this.surtaxPercentage + 1;

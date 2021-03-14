@@ -1,5 +1,5 @@
 
-exports.calcBrutto = (netto, taxRelief, taxCoefficient, taxCoefficient36) => {
+exports.calcBrutto = function (netto, taxRelief, taxCoefficient, taxCoefficient36) {
     this.netto = netto;
     this.taxRelief = taxRelief;
     this.taxCoefficient = taxCoefficient;

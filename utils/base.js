@@ -1,4 +1,4 @@
-exports.calcBase = (income, taxRelief) => {
+exports.calcBase = function (income, taxRelief) {
     this.income = income;
     this.taxRelief = taxRelief;
     let base = 0;

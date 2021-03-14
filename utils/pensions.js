@@ -1,4 +1,4 @@
-exports.calcPensions = (brutto) => {
+exports.calcPensions = function (brutto) {
     this.brutto = brutto;
     let pensionOne = 0;
     let pensionTwo = 0;

@@ -1,4 +1,4 @@
-exports.calcSurtaxPercentage = (city) => {
+exports.calcSurtaxPercentage = function (city) {
     this.city = city;
     let surtaxPercentage = 0;
     switch(this.city){

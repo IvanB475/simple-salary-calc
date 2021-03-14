@@ -1,4 +1,4 @@
-exports.calcNetto = (income, base, surtaxPercentage) => {
+exports.calcNetto = function (income, base, surtaxPercentage) {
     this.income = income;
     this.base = base;
     this.surtaxPercentage = surtaxPercentage;
